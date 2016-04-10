@@ -1,4 +1,5 @@
 require './data_manager.rb'
+require './main_methods.rb'
 require './author.rb'
 require './reader.rb'
 require './book.rb'
@@ -8,14 +9,19 @@ require './library.rb'
 
 lib = Library.new
 
-if ARGV[0] == 'tasks'
-  puts "\n--- Who often takes the book ------"
-  lib.get_often_readers.each { |item| puts item.to_str(' -- ') }
-  puts "\n--- What is the most popular book ---"
-  puts lib.get_most_popular_book.to_str(' -- ')
-  puts "\n--- How many people ordered one of the most popular books ---"
-  puts lib.get_count_readers_ordered_three_popular_book
-  puts "----------------------------------\n\n"
+case ARGV[0]
+  when 'all_tasks'
+    show_often_readers(lib)
+    show_most_popular_book(lib)
+    show_count_readers_ordered_three_popular_book(lib)
+  when 'often_readers'
+    show_often_readers(lib)
+  when 'most_popular_book'
+    show_most_popular_book(lib)
+  when 'count_readers_ordered_three_popular_book'
+    show_count_readers_ordered_three_popular_book(lib)
+  else
+    show_help
 end
 
-lib.save
+END { lib.save }

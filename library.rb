@@ -17,11 +17,11 @@ class Library
 
 #-----------------------------------------
   def get_often_readers
-    Reader.instances.select { |reader| reader.orders.size > 1 }
+    readers.select { |reader| reader.orders.size > 1 }
   end
 #------------------------------------------
   def get_books_rating
-    Book.instances.sort do |x, y|
+    books.sort do |x, y|
       y.orders.size <=> x.orders.size
     end
   end
