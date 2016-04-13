@@ -1,7 +1,7 @@
-class Reader
-  extend DataManager
-  attr_reader :id, :name, :email, :city, :street, :house
-  @@instances = []
+require './entity.rb'
+
+class Reader < Entity
+  attr_reader :id, :name, :email, :city, :street, :house, :orders
 
   def initialize(id, name, email, city, street, house)
     @id = id.to_i
@@ -20,10 +20,6 @@ class Reader
 
   def add_order(order)
     @orders << order
-  end
-
-  def orders
-    @orders
   end
 
 end

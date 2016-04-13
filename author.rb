@@ -1,7 +1,7 @@
-class Author
-  extend DataManager
+require './entity.rb'
+
+class Author < Entity
 	attr_reader :id, :name, :biography
-  @@instances = []
 
   def initialize(id, name, biography)
     @id = id.to_i

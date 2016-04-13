@@ -1,11 +1,5 @@
-require './data_manager.rb'
 require './main_methods.rb'
-require './author.rb'
-require './reader.rb'
-require './book.rb'
-require './order.rb'
 require './library.rb'
-
 
 lib = Library.new
 
