@@ -26,8 +26,4 @@ module DataManager
       class_variable_get(:@@instances)
   end
 
-  def current_id
-      class_variable_get(:@@current_id)
-  end
-
 end

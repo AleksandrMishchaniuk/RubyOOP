@@ -1,7 +1,6 @@
 class Order
   extend DataManager
 	attr_reader :id, :book, :reader, :date
-	@@current_id = 0
   @@instances = []
 
   def initialize(id, book, reader, date)

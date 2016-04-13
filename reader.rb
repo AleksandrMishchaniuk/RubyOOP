@@ -1,7 +1,6 @@
 class Reader
   extend DataManager
   attr_reader :id, :name, :email, :city, :street, :house
-  @@current_id = 0
   @@instances = []
 
   def initialize(id, name, email, city, street, house)

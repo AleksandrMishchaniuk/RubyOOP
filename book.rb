@@ -1,7 +1,6 @@
 class Book
   extend DataManager
 	attr_reader :id, :title, :author
-	@@current_id = 0
   @@instances = []
 
   def initialize(id, title, author)
