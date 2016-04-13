@@ -1,8 +1,7 @@
-class Author
-  extend DataManager
+require './entity.rb'
+
+class Author < Entity
 	attr_reader :id, :name, :biography
-	@@current_id = 0
-  @@instances = []
 
   def initialize(id, name, biography)
     @id = id.to_i
@@ -11,8 +10,4 @@ class Author
     @@instances << self
   end	
 
-  def to_str(glue = ', ')
-    id.to_s + glue + name + glue + biography
-  end
-  
 end

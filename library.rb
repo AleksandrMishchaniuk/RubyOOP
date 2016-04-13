@@ -1,3 +1,8 @@
+require './author.rb'
+require './reader.rb'
+require './book.rb'
+require './order.rb'
+
 class Library
 	attr_reader :books, :readers, :orders, :authors
 

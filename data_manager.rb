@@ -18,16 +18,4 @@ module DataManager
     end
   end
 
-  def get_by_id(id)
-    self.instances.find { |item| id.to_i == item.id }
-  end
-
-  def instances
-      class_variable_get(:@@instances)
-  end
-
-  def current_id
-      class_variable_get(:@@current_id)
-  end
-
 end
