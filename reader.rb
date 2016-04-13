@@ -14,10 +14,6 @@ class Reader < Entity
     @@instances << self
   end 
 
-  def to_str(glue = ', ')
-    id.to_s + glue + name + glue + email + glue + city + glue + street + glue + house
-  end
-
   def add_order(order)
     @orders << order
   end

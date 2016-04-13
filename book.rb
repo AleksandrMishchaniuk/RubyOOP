@@ -15,10 +15,6 @@ class Book < Entity
     @@instances << self
   end	
 
-  def to_str(glue = ', ')
-    id.to_s + glue + title + glue + author.id.to_s
-  end
-
   def add_order(order)
     @orders << order
   end
