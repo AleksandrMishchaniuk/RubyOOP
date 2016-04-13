@@ -17,14 +17,8 @@ class Order < Entity
               end
     @date = date
     @@instances << self
-    # p @book
-    # p @reader
     @book.add_order(self)
     @reader.add_order(self)
   end 
-
-  def to_str(glue = ', ')
-    id.to_s + glue + book.id.to_s + glue + reader.id.to_s + glue + date
-  end
 
 end

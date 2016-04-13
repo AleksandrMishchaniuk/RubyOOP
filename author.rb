@@ -10,8 +10,4 @@ class Author < Entity
     @@instances << self
   end	
 
-  def to_str(glue = ', ')
-    id.to_s + glue + name + glue + biography
-  end
-  
 end
