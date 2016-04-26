@@ -7,12 +7,12 @@ module DataManager
       i = line.split(' --:-- ')
       self.new(*i)
     end
-    self.instances
+    instances
   end
 
   def save
     File.open('data/'+self.to_s.downcase+'.data', 'w') do |f|
-      self.instances.each do |item|
+      instances.each do |item|
         f.puts(item.to_str(' --:-- '))
       end
     end

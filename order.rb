@@ -5,20 +5,9 @@ class Order < Entity
 
   def initialize(id, book, reader, date)
     @id = id.to_i
-    @book = if book.is_a?(Book)
-               book
-            else
-              Book.get_by_id(book.to_i)
-            end
-    @reader = if reader.is_a?(Reader)
-                 reader
-              else
-                Reader.get_by_id(reader.to_i)
-              end
+    @book = Book.get_by_id(book.to_i)
+    @reader = Reader.get_by_id(reader.to_i)
     @date = date
     @@instances << self
-    @book.add_order(self)
-    @reader.add_order(self)
   end 
-
 end

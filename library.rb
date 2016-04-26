@@ -22,12 +22,16 @@ class Library
 
 #-----------------------------------------
   def get_often_readers
-    readers.select { |reader| reader.orders.size > 1 }
+    readers.select do |reader|
+      orders.count{ |order| order.reader.id == reader.id } > 1
+    end
   end
 #------------------------------------------
   def get_books_rating
-    books.sort do |x, y|
-      y.orders.size <=> x.orders.size
+    books.sort do |prev_book, next_book|
+      prev_count = orders.count { |order| order.book.id == prev_book.id }
+      next_count = orders.count { |order| order.book.id == next_book.id }
+      next_count <=> prev_count
     end
   end
 #--------------------------------------------
@@ -36,11 +40,11 @@ class Library
   end
 #-----------------------------------------------
   def get_readers_ordered_three_popular_book
-    readers = []
-    get_books_rating.take(3).each do |book|
-      book.orders.each { |order| readers << order.reader }
+    orders_stack = orders.select do |order|
+      get_books_rating.take(3).include?(order.book)
     end
-    readers.uniq
+    readers_stack = orders_stack.map { |order| order.reader }
+    readers_stack.uniq
   end
 
   def get_count_readers_ordered_three_popular_book

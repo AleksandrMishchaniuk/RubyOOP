@@ -13,9 +13,4 @@ class Reader < Entity
     @orders = []
     @@instances << self
   end 
-
-  def add_order(order)
-    @orders << order
-  end
-
 end
