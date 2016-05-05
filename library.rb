@@ -5,7 +5,7 @@ require './order.rb'
 
 class Library
 	attr_reader :books, :readers, :orders, :authors
-
+  
   def initialize
     @authors = Author.init
     @readers = Reader.init
@@ -28,10 +28,8 @@ class Library
   end
 #------------------------------------------
   def get_books_rating
-    books.sort do |prev_book, next_book|
-      prev_count = orders.count { |order| order.book.id == prev_book.id }
-      next_count = orders.count { |order| order.book.id == next_book.id }
-      next_count <=> prev_count
+    books.sort_by do |book|
+      -orders.count { |order| order.book.id == book.id }
     end
   end
 #--------------------------------------------
