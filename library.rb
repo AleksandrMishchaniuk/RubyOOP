@@ -21,28 +21,23 @@ class Library
   end
 
 #-----------------------------------------
-  def get_often_readers
-    readers.select do |reader|
-      orders.count{ |order| order.reader.id == reader.id } > 1
-    end
+  def get_often_reader
+    readers_group = orders.group_by { |order| order.reader }
+    readers_group.max_by { |reader, orders| orders.size }[0]
   end
 #------------------------------------------
   def get_books_rating
-    books.sort_by do |book|
-      -orders.count { |order| order.book.id == book.id }
-    end
+    books_group = orders.group_by { |order| order.book }
+    books_group.sort_by { |book, orders| orders.size }.reverse
   end
 #--------------------------------------------
   def get_most_popular_book
-    get_books_rating[0]
+    get_books_rating[0][0]
   end
 #-----------------------------------------------
   def get_readers_ordered_three_popular_book
-    orders_stack = orders.select do |order|
-      get_books_rating.take(3).include?(order.book)
-    end
-    readers_stack = orders_stack.map { |order| order.reader }
-    readers_stack.uniq
+    orders_stack = get_books_rating.take(3).map { |item| item[1] }
+    orders_stack.flatten.map { |order| order.reader }.uniq
   end
 
   def get_count_readers_ordered_three_popular_book

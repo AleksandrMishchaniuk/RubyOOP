@@ -1,6 +1,6 @@
-def show_often_readers(lib)
+def show_often_reader(lib)
   puts "+++ Who often takes the book ++++++++++++++"
-  lib.get_often_readers.each { |item| puts item.to_str(' -- ') }
+  puts lib.get_often_reader.to_str(' -- ')
   puts "+++++++++++++++++++++++++++++++++++++++++++++++++"
 end
 

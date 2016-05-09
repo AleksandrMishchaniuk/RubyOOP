@@ -10,7 +10,6 @@ class Reader < Entity
     @city = city.to_s
     @street = street.to_s
     @house = house.to_s
-    @orders = []
     @@instances << self
   end 
 end
