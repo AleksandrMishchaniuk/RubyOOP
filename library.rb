@@ -5,7 +5,7 @@ require './order.rb'
 
 class Library
 	attr_reader :books, :readers, :orders, :authors
-
+  
   def initialize
     @authors = Author.init
     @readers = Reader.init
@@ -21,26 +21,23 @@ class Library
   end
 
 #-----------------------------------------
-  def get_often_readers
-    readers.select { |reader| reader.orders.size > 1 }
+  def get_often_reader
+    orders.group_by { |order| order.reader }
+        .max_by { |reader, orders| orders.size }[0]
   end
 #------------------------------------------
   def get_books_rating
-    books.sort do |x, y|
-      y.orders.size <=> x.orders.size
-    end
+    orders.group_by { |order| order.book }
+        .sort_by { |book, orders| orders.size }.reverse
   end
 #--------------------------------------------
   def get_most_popular_book
-    get_books_rating[0]
+    get_books_rating[0][0]
   end
 #-----------------------------------------------
   def get_readers_ordered_three_popular_book
-    readers = []
-    get_books_rating.take(3).each do |book|
-      book.orders.each { |order| readers << order.reader }
-    end
-    readers.uniq
+    get_books_rating.take(3).map { |item| item[1] }
+        .flatten.map { |order| order.reader }.uniq
   end
 
   def get_count_readers_ordered_three_popular_book
